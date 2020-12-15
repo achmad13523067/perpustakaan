@@ -49,7 +49,7 @@ public abstract class BaseDAO <T extends BaseEntity<T>> {
 
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
-        CriteriaQuery<Long> query= builder.createQuery(Long,Class);
+        CriteriaQuery<Long> query= builder.createQuery(Long.class);
         Root<T> root = query.from(type);
 
         query.select(builder.count(root));
@@ -57,7 +57,7 @@ public abstract class BaseDAO <T extends BaseEntity<T>> {
         return singleResult(query, predicates(param, builder, root, true));
     }
 public T save(T entity){
-        if (entity != null && entity.getId()== null){
+        if (entity != null && entity.getId() == null){
             entityManager.persist(entity);
 
             return entity;
